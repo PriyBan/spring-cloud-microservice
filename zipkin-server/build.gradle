@@ -1,0 +1,26 @@
+plugins {
+	id 'org.springframework.boot' version '1.5.10.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+}
+group = 'com.example.mse'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+repositories {
+	mavenCentral()
+}
+ext {
+	set('springCloudVersion', "Edgware.RELEASE")
+}
+dependencies {
+	implementation 'org.springframework.cloud:spring-cloud-starter-zipkin'
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+	implementation 'io.zipkin.java:zipkin-server'
+	runtimeOnly 'io.zipkin.java:zipkin-autoconfigure-ui'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
